@@ -1,0 +1,59 @@
+<canvas id="myCanvas"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.119.1/build/three.min.js"></script>
+
+<script>
+  // Get a reference to the canvas element
+  const canvas = document.getElementById('myCanvas');
+
+  // Set the width and height of the canvas
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // Create a Three.js renderer and attach it to the canvas
+  const renderer = new THREE.WebGLRenderer({ canvas });
+
+  // Create a new Three.js scene
+  const scene = new THREE.Scene();
+
+  // Create a new Three.js camera
+  const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);
+  camera.position.z = 5;
+
+  // Create a cube and add it to the scene
+  const geometry = new THREE.BoxGeometry(1, 1, 1);
+
+  // Create a TextureLoader to load the images
+  const textureLoader = new THREE.TextureLoader();
+
+  // Load the images as textures
+  const texture1 = textureLoader.load('image1.jpg');
+  const texture2 = textureLoader.load('image2.jpg');
+  const texture3 = textureLoader.load('image3.jpg');
+  const texture4 = textureLoader.load('image2.jpg');
+  const texture5 = textureLoader.load('image1.jpg');
+  const texture6 = textureLoader.load('image3.jpg');
+
+  // Create materials for each side of the cube using the textures
+  const material1 = new THREE.MeshBasicMaterial({ map: texture1 });
+  const material2 = new THREE.MeshBasicMaterial({ map: texture2 });
+  const material3 = new THREE.MeshBasicMaterial({ map: texture3 });
+  const material4 = new THREE.MeshBasicMaterial({ map: texture4 });
+  const material5 = new THREE.MeshBasicMaterial({ map: texture5 });
+  const material6 = new THREE.MeshBasicMaterial({ map: texture6 });
+
+  // Set the materials for each face of the cube
+  geometry.faces[0].materialIndex = 0;
+  geometry.faces[1].materialIndex = 1;
+  geometry.faces[2].materialIndex = 2;
+  geometry.faces[3].materialIndex = 3;
+  geometry.faces[4].materialIndex = 4;
+  geometry.faces[5].materialIndex = 5;
+
+  // Create a mesh from the geometry and materials
+  const cube = new THREE.Mesh(geometry, [material1, material2, material3, material4, material5, material6]);
+  scene.add(cube);
+
+  // Render the scene
+  renderer.render(scene, camera);
+</script>

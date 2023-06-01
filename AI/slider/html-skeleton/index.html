@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <title>AI - cirle</title>
+    </head>
+    <body>
+        <!-- <canvas id="myCanvas" width="200" height="100"></canvas> -->
+        <!-- <script src="app.js"></script> -->
+        <!-- <canvas id="myCanvas"></canvas>
+
+        <script src="https://cdn.jsdelivr.net/npm/three@0.119.1/build/three.min.js"></script>
+
+        <script>
+        // Get a reference to the canvas element
+        const canvas = document.getElementById('myCanvas');
+
+        // Set the width and height of the canvas
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Create a Three.js renderer and attach it to the canvas
+        const renderer = new THREE.WebGLRenderer({ canvas });
+
+        // Create a new Three.js scene
+        const scene = new THREE.Scene();
+
+        // Create a new Three.js camera
+        const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);
+        camera.position.z = 5;
+
+        // Create a cube and add it to the scene
+        const geometry = new THREE.BoxGeometry(1, 1, 1);
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        // Render the scene
+        renderer.render(scene, camera);
+        </script> -->
+
+        <canvas id="myCanvas"></canvas>
+
+        <script src="https://cdn.jsdelivr.net/npm/three@0.119.1/build/three.min.js"></script>
+
+        <script>
+        // Get a reference to the canvas element
+        const canvas = document.getElementById('myCanvas');
+
+        // Set the width and height of the canvas
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Create a Three.js renderer and attach it to the canvas
+        const renderer = new THREE.WebGLRenderer({ canvas });
+
+        // Create a new Three.js scene
+        const scene = new THREE.Scene();
+
+        // Create a new Three.js camera
+        const camera = new THREE.PerspectiveCamera(75, canvas.width / canvas.height, 0.1, 1000);
+        camera.position.z = 5;
+
+        // Create a cube and add it to the scene
+        const geometry = new THREE.BoxGeometry(1, 1, 1);
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        // Animate the cube's rotation
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate the cube around the Y axis
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            cube.rotation.z += 0.01;
+
+            // Render the scene
+            renderer.render(scene, camera);
+        }
+
+        animate();
+        </script>
+
+
+    </body>
+</html>
