@@ -27,17 +27,20 @@ var colorCounter = 0;
 
 function addStyle() {
 
-    if(colorCounter >= 3) {
-        colorCounter = 0;
-    }
-
     circleDivs.forEach((div, index) => {
-        div.classList.remove(colorClasses[colorCounter]);
+        if(div.classList.contains(colorClasses[colorCounter])) {
+            div.classList.remove(colorClasses[colorCounter]);
+        }
     });
 
     if(initial >= 50) {
         initial = 0;
+
         colorCounter++;
+
+        if(colorCounter >= 3) {
+            colorCounter = 0;
+        }
     }
 
     circleDivs[initial].classList.add(colorClasses[colorCounter]);
