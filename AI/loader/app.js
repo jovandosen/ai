@@ -22,21 +22,28 @@ circleDivs.forEach((div, index) => {
 
 var initial = 0;
 var interval;
+var colorClasses = ["circle-red", "circle-green", "circle-blue"];
+var colorCounter = 0;
 
 function addStyle() {
 
+    if(colorCounter >= 3) {
+        colorCounter = 0;
+    }
+
     circleDivs.forEach((div, index) => {
-        div.classList.remove("circle-background");
+        div.classList.remove(colorClasses[colorCounter]);
     });
 
     if(initial >= 50) {
         initial = 0;
+        colorCounter++;
     }
 
-    circleDivs[initial].classList.add("circle-background");
+    circleDivs[initial].classList.add(colorClasses[colorCounter]);
     
     initial++;
 
 }
 
-interval = setInterval(addStyle, 30);
+interval = setInterval(addStyle, 50);

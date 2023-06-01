@@ -6,8 +6,16 @@
     position: absolute;
 }
 
-.circle-background {
+.circle-red {
     background-color: red;
+}
+
+.circle-green {
+    background-color: green;
+}
+
+.circle-blue {
+    background-color: blue;
 }
 
 #container {
