@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Clock</title>
+  <style>
+    canvas {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="clock" width="200" height="200"></canvas>
+
+  <script>
+    // Get the canvas element
+    var canvas = document.getElementById('clock');
+    var context = canvas.getContext('2d');
+
+    // Set the center and radius of the clock
+    var centerX = canvas.width / 2;
+    var centerY = canvas.height / 2;
+    var radius = canvas.width / 2 - 10;
+
+    // Function to draw the clock
+    function drawClock() {
+      // Clear the canvas
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw the outer circle
+      context.beginPath();
+      context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+      context.strokeStyle = 'black';
+      context.lineWidth = 2;
+      context.stroke();
+      context.closePath();
+
+      // Draw the hour hand
+      var date = new Date();
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var seconds = date.getSeconds();
+
+      var hourAngle = (hours % 12 + minutes / 60 + seconds / 3600) * (Math.PI / 6) - Math.PI / 2;
+      var hourHandLength = radius * 0.5;
+      var hourHandX = centerX + hourHandLength * Math.cos(hourAngle);
+      var hourHandY = centerY + hourHandLength * Math.sin(hourAngle);
+
+      context.beginPath();
+      context.moveTo(centerX, centerY);
+      context.lineTo(hourHandX, hourHandY);
+      context.strokeStyle = 'black';
+      context.lineWidth = 4;
+      context.stroke();
+      context.closePath();
+
+      // Draw the minute hand
+      var minuteAngle = (minutes + seconds / 60) * (Math.PI / 30) - Math.PI / 2;
+      var minuteHandLength = radius * 0.7;
+      var minuteHandX = centerX + minuteHandLength * Math.cos(minuteAngle);
+      var minuteHandY = centerY + minuteHandLength * Math.sin(minuteAngle);
+
+      context.beginPath();
+      context.moveTo(centerX, centerY);
+      context.lineTo(minuteHandX, minuteHandY);
+      context.strokeStyle = 'black';
+      context.lineWidth = 3;
+      context.stroke();
+      context.closePath();
+
+      // Draw the second hand
+      var secondAngle = (seconds + date.getMilliseconds() / 1000) * (Math.PI / 30) - Math.PI / 2;
+      var secondHandLength = radius * 0.9;
+      var secondHandX = centerX + secondHandLength * Math.cos(secondAngle);
+      var secondHandY = centerY + secondHandLength * Math.sin(secondAngle);
+
+      context.beginPath();
+      context.moveTo(centerX, centerY);
+      context.lineTo(secondHandX, secondHandY);
+      context.strokeStyle = 'red';
+      context.lineWidth = 1;
+      context.stroke();
+      context.closePath();
+
+      // Draw the center dot
+      context.beginPath();
+      context.arc(centerX, centerY, 3, 0, 2 * Math.PI);
+      context.fillStyle = 'black';
+      context.fill();
+      context.closePath();
+    }
+
+    // Draw the clock every second
+    setInterval(drawClock, 1000);
+  </script>
+</body>
+</html>
